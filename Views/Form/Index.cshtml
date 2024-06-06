@@ -1,0 +1,13 @@
+@inject IConfiguration configuration;
+
+@{
+    var sitekey = configuration.GetValue<string>("cf-turnstile-sitekey");
+}
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<form action="/form/submit" method="post">
+    <label for="email-input">Epost</label>
+    <input type="email" name="email" id="email-input">
+    <div class="cf-turnstile" data-sitekey="@sitekey"></div>
+    <button type="submit">Send inn</button>
+</form>
